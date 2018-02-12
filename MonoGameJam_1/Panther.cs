@@ -36,8 +36,8 @@ namespace MonoGameJam_1
             Helper.Initialize(this, GDM, GraphicsDevice);
             FPSTimer = new Timer(this, 1);
 
-            TheCamera = new Camera(this, new Vector3(-50, 150, 500), new Vector3(0, MathHelper.Pi, 0),
-                GraphicsDevice.Viewport.AspectRatio, 0.1f, 1000f);
+            TheCamera = new Camera(this, new Vector3(0, 800, 2500), new Vector3(0, MathHelper.Pi, 0),
+                GraphicsDevice.Viewport.AspectRatio, 1f, 10000f);
 
             TheGame = new GameLogic(this, TheCamera);
         }
