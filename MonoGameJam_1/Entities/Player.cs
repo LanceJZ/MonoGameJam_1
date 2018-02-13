@@ -96,16 +96,7 @@ namespace MonoGameJam_1
             Input();
             StearingWheeAngle = StearingWheelTurn * MathHelper.PiOver4 * 0.045f;
             TheSteeringWheel.PO.Rotation.Z = StearingWheeAngle;
-
-            FrontTires[0].PO.Rotation.Y = StearingWheeAngle * MathHelper.PiOver4 * 0.25f;
-            FrontTires[1].PO.Rotation.Y = MathHelper.Pi +
-                (StearingWheeAngle * MathHelper.PiOver4 * 0.25f);
-
-            RearTires[0].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
-            RearTires[1].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
-
-            FrontTires[0].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
-            FrontTires[1].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
+            SpinTires();
 
             CameraRef.Position.Z = 200 + Position.Z;
             CameraRef.LookAt = Position;
@@ -113,6 +104,33 @@ namespace MonoGameJam_1
             base.Update(gameTime);
         }
         #endregion
+        void SpinTires()
+        {
+            switch(CurrentGear)
+            {
+                case Gear.First:
+                case Gear.Second:
+                case Gear.Third:
+                    RearTires[0].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
+                    RearTires[1].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
+
+                    FrontTires[0].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
+                    FrontTires[1].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
+                    break;
+                case Gear.Reverse:
+                    RearTires[0].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
+                    RearTires[1].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
+
+                    FrontTires[0].PO.RotationVelocity.Z = Speed * MathHelper.PiOver4;
+                    FrontTires[1].PO.RotationVelocity.Z = -Speed * MathHelper.PiOver4;
+                    break;
+            }
+
+            FrontTires[0].PO.Rotation.Y = StearingWheeAngle * MathHelper.PiOver4 * 0.25f;
+            FrontTires[1].PO.Rotation.Y = MathHelper.Pi +
+                (StearingWheeAngle * MathHelper.PiOver4 * 0.25f);
+        }
+
         void Input()
         {
             KeyboardState KBS = Keyboard.GetState();
@@ -191,6 +209,12 @@ namespace MonoGameJam_1
             {
                 EngineAccelerate = 0;
                 Transmission = 0;
+
+                if (Speed < 2)
+                {
+                    Force.Velocity = Vector3.Zero;
+                    Velocity = Vector3.Zero;
+                }
             }
 
             if (KBS.IsKeyDown(Keys.Left))

@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <AssemblyVersion>1.280.12.0</AssemblyVersion>
+    <AssemblyVersion>1.313.13.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -72,7 +72,9 @@
     <Compile Include="Engine\Terrain.cs" />
     <Compile Include="Engine\Timer.cs" />
     <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\Houses.cs" />
     <Compile Include="Entities\Player.cs" />
+    <Compile Include="Entities\Roads.cs" />
     <Compile Include="Entities\SteeringwheelUI.cs" />
     <Compile Include="Panther.cs" />
     <Compile Include="GameLogic.cs" />

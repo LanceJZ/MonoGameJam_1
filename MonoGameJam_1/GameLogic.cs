@@ -24,6 +24,8 @@ namespace MonoGameJam_1
         Letters WordDisplay;
         Effect TerrainEffect;
         Player ThePlayer;
+        Houses TheHouses;
+        Roads TheRoads;
 
         GameState GameMode = GameState.InPlay;
         KeyboardState OldKeyState;
@@ -37,6 +39,8 @@ namespace MonoGameJam_1
             ScoreDisplay = new Numbers(game);
             WordDisplay = new Letters(game);
             ThePlayer = new Player(game, camera, this);
+            TheHouses = new Houses(game, camera, this);
+            TheRoads = new Roads(game, camera, this);
 
             // Screen resolution is 1200 X 900.
             // Y positive is Up.
