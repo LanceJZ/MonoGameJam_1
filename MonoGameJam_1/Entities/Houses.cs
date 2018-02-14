@@ -56,11 +56,28 @@ namespace MonoGameJam_1
         #endregion
         void Setup()
         {
-            for (int i = 0; i < 10; i++)
+            int spaceBetween = 200;
+            int spaceBetweenColums = 640;
+            int spaceBetweenBlocks = 1600;
+            int perBlock = 7;
+            int blocks = 2;
+            int colums = 7;
+
+            for (int c = 0; c < colums; c++)
             {
-                TheHouses.Add(new ModelEntity(Game, CameraRef, HouseModel,
-                    new Vector3(-(160 *5) + (i * 160), 1.5f, -100)));
-                TheHouses.Last().ModelScale = new Vector3(2);
+                for (int b = 0; b < blocks; b++)
+                {
+                    for (int i = 0; i < perBlock; i++)
+                    {
+                        TheHouses.Add(new ModelEntity(Game, CameraRef, HouseModel,
+                            new Vector3(-(spaceBetweenBlocks / 2) + -(spaceBetween / 2) +
+                            -((spaceBetween * perBlock) / 2) +
+                            (i * spaceBetween) + (b * spaceBetweenBlocks) + spaceBetween, 0.0f,
+                            -(spaceBetween * 2.5f) + (colums * (spaceBetweenColums / 2)) +
+                            -((spaceBetweenColums * c)))));
+                        TheHouses.Last().ModelScale = new Vector3(2);
+                    }
+                }
             }
         }
     }

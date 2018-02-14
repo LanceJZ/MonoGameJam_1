@@ -85,8 +85,8 @@ namespace MonoGameJam_1
             base.BeginRun();
             FrontWheel = 9f;
             RearWheel = -11.5f;
-            CameraRef.Position.Y = 100;
-            PO.Position.Y = 5f;
+            PO.Position.Y = 2;
+            CameraRef.Position.Y = 300;
             //Enabled = false;
         }
         #endregion
@@ -98,7 +98,8 @@ namespace MonoGameJam_1
             TheSteeringWheel.PO.Rotation.Z = StearingWheeAngle;
             SpinTires();
 
-            CameraRef.Position.Z = 200 + Position.Z;
+            CameraRef.Position.Z = 300 + Position.Z;
+            CameraRef.Position.X = 300 + Position.X;
             CameraRef.LookAt = Position;
 
             base.Update(gameTime);
@@ -170,7 +171,7 @@ namespace MonoGameJam_1
                 {
                     case Gear.First:
                     case Gear.Reverse:
-                        EngineAccelerate++;
+                        EngineAccelerate+= 0.5f;
                         break;
                     case Gear.Second:
                         EngineAccelerate += 0.1f;
@@ -187,7 +188,7 @@ namespace MonoGameJam_1
             }
             else if (KBS.IsKeyDown(Keys.Down))
             {
-                EngineAccelerate -= 1;
+                EngineAccelerate -= 0.5f;
 
                 switch (CurrentGear)
                 {

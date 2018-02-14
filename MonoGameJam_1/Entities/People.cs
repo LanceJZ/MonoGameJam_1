@@ -44,7 +44,7 @@ namespace MonoGameJam_1
 
         public void BeginRun()
         {
-            ThePeople.Add(new Person(Game, CameraRef, LogicRef));
+            //ThePeople.Add(new Person(Game, CameraRef, LogicRef));
         }
         #endregion
         #region Update

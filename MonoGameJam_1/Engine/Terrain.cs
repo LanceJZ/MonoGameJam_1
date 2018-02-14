@@ -125,7 +125,8 @@ namespace MonoGameJam_1
         #region Public Methods
         public float GetHeight(Vector3 position)
         {
-            return GetHeight(position.X, position.Z);
+            return GetHeight(((position.X / Scale) + (HeightMap.Width / 2)),
+                ((position.Z / Scale) + (HeightMap.Height / 2)));
         }
 
         public float GetHeight(float x, float z)

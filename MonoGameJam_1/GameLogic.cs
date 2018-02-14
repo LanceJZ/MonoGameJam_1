@@ -34,6 +34,7 @@ namespace MonoGameJam_1
 
         public GameState CurrentMode { get => GameMode; }
         public Terrain TerrainRef { get => TheTerrain; }
+        public Roads RoadsRef { get => TheRoads; }
         public People PeopleRef { get => ThePeople; }
         public UFOControl UFOControlRef { get => TheUFOs; }
 

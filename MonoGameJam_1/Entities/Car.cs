@@ -25,6 +25,7 @@ namespace MonoGameJam_1
         protected Gear CurrentGear;
 
         protected float Speed;
+        protected float MaxSpeed;
         protected float Tracktion;
         protected float CarHeading;
         protected float DistanceOneFrame;
@@ -82,13 +83,14 @@ namespace MonoGameJam_1
             Force.Velocity = Vector3.Zero;
             CurrentGear = Gear.First;
             GearRatio = 0.75f;
+            MaxSpeed = 120;
             EngineAccelerate = 0;
             Transmission = 0;
             StearingWheelTurn = 0;
             Tracktion = 15.5f;
         }
 
-        public void Bumped(Vector3 position, Vector3 velocity)
+        public virtual void Bumped(Vector3 position, Vector3 velocity)
         {
             Acceleration = Vector3.Zero;
             Velocity = (Velocity * 0.1f) * -1;
@@ -118,7 +120,8 @@ namespace MonoGameJam_1
                     Transmission -= 20 * PO.ElapsedGameTime;
                 }
 
-                Transmission += (EngineAccelerate / (GearRatio * 2)) * PO.ElapsedGameTime;
+                if (MaxSpeed > Speed)
+                    Transmission += (EngineAccelerate / (GearRatio * 2)) * PO.ElapsedGameTime;
 
                 if (Transmission > 100)
                     Transmission = 100;
@@ -197,7 +200,7 @@ namespace MonoGameJam_1
                     speedAdj = -StearingWheeAngle * 20;
                 }
 
-                if (Speed > (120 - speedAdj))
+                if (Speed > (MaxSpeed - speedAdj))
                 {
                     Acceleration = -Velocity;
                     Transmission = Speed * 0.75f;
