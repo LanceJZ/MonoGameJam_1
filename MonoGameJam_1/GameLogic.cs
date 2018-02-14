@@ -26,12 +26,16 @@ namespace MonoGameJam_1
         Player ThePlayer;
         Houses TheHouses;
         Roads TheRoads;
+        People ThePeople;
+        UFOControl TheUFOs;
 
         GameState GameMode = GameState.InPlay;
         KeyboardState OldKeyState;
 
         public GameState CurrentMode { get => GameMode; }
         public Terrain TerrainRef { get => TheTerrain; }
+        public People PeopleRef { get => ThePeople; }
+        public UFOControl UFOControlRef { get => TheUFOs; }
 
         public GameLogic(Game game, Camera camera) : base(game)
         {
@@ -41,6 +45,8 @@ namespace MonoGameJam_1
             ThePlayer = new Player(game, camera, this);
             TheHouses = new Houses(game, camera, this);
             TheRoads = new Roads(game, camera, this);
+            ThePeople = new People(game, camera, this);
+            TheUFOs = new UFOControl(game, camera, this);
 
             // Screen resolution is 1200 X 900.
             // Y positive is Up.
